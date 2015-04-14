@@ -1,0 +1,25 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template for PyEZ GetFacts
+
+parameters:
+  target_name:
+    type: string
+    description: IP address/name of JUNOS target
+
+  user_name:
+    type: string
+    description: User name
+
+  password:
+    type: string
+    description: password
+
+resources:
+  junos_facts:
+    type: OS::PyEZ::GetFacts
+    properties:
+      target: { get_param: target_name }
+      user: { get_param: user_name }
+      password: { get_param: password }
