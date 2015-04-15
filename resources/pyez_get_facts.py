@@ -58,11 +58,18 @@ class GetFacts(resource.Resource):
         ),
     }
 
+    attributes_schema = {
+        'hostname': _("target name."),
+        'model': _("target model."),
+        'serialnumber': _("serial number."),
+    }
 
     def handle_create(self):
         dev = Device(host="10.10.11.27", user="admin", password="op3nl@b")  
         dev.open()  
-        self.facts = dev.facts
+        db_api.resource_data_set(self, 'hostname', dev.facts['hostname'], redact=True)
+        db_api.resource_data_set(self, 'model', dev.facts['model'], redact=True)
+        db_api.resource_data_set(self, 'serialnumber', dev.facts['serialnumber'], redact=True)
         dev.close()  
 
     def handle_delete(self):
@@ -72,7 +79,12 @@ class GetFacts(resource.Resource):
         pass
 
     def _resolve_attribute(self, name):
-        pass
+        if name == 'hostname':
+          return db_api.resource_data_get(self, 'hostname')
+        elif name == 'model':
+          return db_api.resource_data_get(self, 'model')
+        elif name == 'serialnumber':
+          return db_api.resource_data_get(self, 'serialnumber')
 
 def resource_mapping():
     return {
