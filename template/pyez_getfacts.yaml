@@ -23,3 +23,16 @@ resources:
       target: { get_param: target_name }
       user: { get_param: user_name }
       password: { get_param: password }
+
+outputs:
+  host_name:
+    description: target junos device name
+    value: { get_attr: [ junos_facts, hostname] }
+
+  model:
+    description: target junos device model
+    value: { get_attr: [ junos_facts, model] }
+
+  serial_number:
+    description: target junos device serial number
+    value: { get_attr: [ junos_facts, serialnumber] }
