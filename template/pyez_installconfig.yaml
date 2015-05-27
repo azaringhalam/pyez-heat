@@ -1,0 +1,76 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template for PyEZ InstallConfig
+
+parameters:
+  host:
+    type: string
+    description: IP address/name of JUNOS target
+
+  user:
+    type: string
+    description: user name
+
+  password:
+    type: string
+    description: password
+
+  console:
+    type: number
+    description: use console port 
+
+  file:
+    type: string
+    description: config file path
+
+  overwrite:
+    type: number
+    description: Overwrite or merge
+
+  logfile:
+    type: string
+    description: logfile path
+
+  diffs_file:
+    type: string
+    description: diffs_file path
+
+  savedir:
+    type: string
+    description: directory to save device facts
+
+  timeout:
+    type: number
+    description: NETCONF RPC timeout
+
+  comment:
+    type: string
+    description: comment for commit operation
+
+  port:
+    type: number
+    description: TCP port on device
+
+  check_mode:
+    type: number
+    description: Check mode for commit
+
+resources:
+  junos_config:
+    type: OS::PyEZ::InstallConfig
+    properties:
+      host: { get_param: host }
+      user: { get_param: user }
+      password: { get_param: password }
+      console: { get_param: console }
+      file: { get_param: file }
+      overwrite: { get_param: overwrite }
+      logfile: { get_param: logfile }
+      diffs_file: { get_param: diffs_file }
+      savedir: { get_param: savedir }
+      timeout: { get_param: timeout }
+      comment: { get_param: comment }
+      port: { get_param: port }
+      check_mode: { get_param: check_mode }
+
