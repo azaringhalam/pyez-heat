@@ -1,0 +1,56 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template for PyEZ JUNOS zeroize
+
+parameters:
+  host:
+    type: string
+    description: IP address/name of JUNOS target
+
+  user:
+    type: string
+    description: user name
+    default: root
+
+  password:
+    type: string
+    description: password
+    default: op3nl@b
+
+  console:
+    type: number
+    description: use console port
+    default: 0
+
+  zeroize:
+    type: string
+    description: for saftety must be set to zeroize
+
+  logfile:
+    type: string
+    description: local path to log progrerss status
+
+  port:
+    type: number
+    description: TCP port on device
+    default: 830
+
+  check_mode:
+    type: number
+    description: Check mode for commit
+    default: 0
+
+resources:
+  junos_zeroize:
+    type: OS::PyEZ::JunosZeroize
+    properties:
+      host: { get_param: host }
+      user: { get_param: user }
+      password: { get_param: password }
+      console: { get_param: console }
+      zeroize: { get_param: zeroize }
+      logfile: { get_param: logfile }
+      port: { get_param: port }
+      check_mode: { get_param: check_mode }
+
