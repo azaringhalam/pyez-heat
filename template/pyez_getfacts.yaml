@@ -36,3 +36,43 @@ outputs:
   serial_number:
     description: target junos device serial number
     value: { get_attr: [ junos_facts, serialnumber] }
+
+  HOME:
+    description: HOME
+    value: { get_attr: [ junos_facts, HOME] }
+
+  reboot_reason:
+    description: reboot reason
+    value: { get_attr: [ junos_facts, reboot_reason] }
+
+  status:
+    description: status
+    value: { get_attr: [ junos_facts, status] }
+
+  up_time:
+    description: up time
+    value: { get_attr: [ junos_facts, up_time] }
+
+  domain:
+    description: domain
+    value: { get_attr: [ junos_facts, domain] }
+
+  fqdn:
+    description: fqdn
+    value: { get_attr: [ junos_facts, fqdn] }
+
+  ifd_style:
+    description: ifd_style
+    value: { get_attr: [ junos_facts, ifd_style] }
+
+  personality:
+    description: personality
+    value: { get_attr: [ junos_facts, personality] }
+
+  switch_style:
+    description: switch_style
+    value: { get_attr: [ junos_facts, switch_style] }
+
+  version:
+    description: version
+    value: { get_attr: [ junos_facts, version] }
