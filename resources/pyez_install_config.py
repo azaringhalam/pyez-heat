@@ -1,18 +1,3 @@
-
-#
-#    Licensed under the Apache License, Version 2.0 (the "License"); you may
-#    not use this file except in compliance with the License. You may obtain
-#    a copy of the License at
-#
-#         http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-#    License for the specific language governing permissions and limitations
-#    under the License.
-
-
 from heat.db import api as db_api
 from heat.engine import properties
 from heat.engine import resource
@@ -70,9 +55,9 @@ class InstallConfig(resource.Resource):
             update_allowed=False,
         ),
         CONSOLE: properties.Schema(
-            properties.Schema.NUMBER,
+            properties.Schema.STRING,
             _('Use console port.'),
-            required=True,
+            required=False,
             default=None,
             update_allowed=False,
         ),
@@ -273,10 +258,11 @@ class InstallConfig(resource.Resource):
             assert float(re.match('\d+.\d+', version).group()) >= 1.0, 'junos-netconify >= 1.0.x is required for this module'
         except ImportError:
             msg='junos-netconify >= 1.0.x is required for this module'
+            #module.fail_json
             print msg
     
         c_args = []
-        c_args.append(self.properties[self.CONSOLE])
+        c_args.append((self.properties[self.CONSOLE]))
         c_args.append('--file=' + self.properties[self.FILE])
         if self.properties[self.SAVEDIR] is not None:
             c_args.append('--savedir=' + self.properties[self.SAVEDIR])
@@ -314,11 +300,13 @@ class InstallConfig(resource.Resource):
             c_results = nc.run(c_args)
         except Exception as err:
             #module.fail_json(msg=str(err))
-            print(str(err))
+            logging.info("netconfify failed: {0}".format(str(err)))
+            return
         m_results = dict(changed=c_results['changed'])
         if c_results['failed'] is True:
             #module.fail_json(msg=c_results['errmsg'])
-            print(c_results['errmsg'])
+            logging.info("netconfify failed: {0}".format(c_results['errmsg']))
+            return
         else:
             #module.exit_json(**m_results)
             print (m_results)
@@ -327,13 +315,9 @@ class InstallConfig(resource.Resource):
         assert HAS_PYEZ, "junos-eznc >= 1.1.x is required for this module"
         assert isfile(self.properties[self.FILE]), 'file not found: {0}'.format(self.properties[self.FILE])
         
-        _ldr = self._load_via_netconf if self.properties[self.CONSOLE] is 0 else self._load_via_console
+        _ldr = self._load_via_netconf if self.properties[self.CONSOLE] is None else self._load_via_console
         _ldr()
             
-
-        
-             
-
     def handle_delete(self):
         pass
 
