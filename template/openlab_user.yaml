@@ -1,0 +1,49 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template for OpenLab project user
+
+parameters:
+  user:
+    type: string
+    description: user name
+    default: admin
+
+  password:
+    type: string
+    description: password
+    default: contrail123
+
+  keystone_name:
+    type: string
+    description: Keystone name
+    default: admin
+
+  auth_url:
+    type: string
+    description: authorization url
+
+  tenant:
+    type: string
+    description: tenant name
+
+  user_name:
+    type: string
+    description: tenant user name
+
+  user_role:
+    type: string
+    description: tenant user role
+
+resources:
+  openlab_user:
+    type: OS::OpenLab::User
+    properties:
+      user: { get_param: user }
+      password: { get_param: password }
+      keystone_name: { get_param: keystone_name }
+      auth_url: { get_param: auth_url }
+      tenant_name: { get_param: tenant }
+      user_name: { get_param: user_name }
+      user_role: { get_param: user_role }
+
