@@ -1,0 +1,1 @@
+heat --os-tenant-name vsrx-project stack-create vsrx-vn-public -f virtual_network.yaml -P "net_name=vsrx-network-public;shared=True;external=True;route_targets=65025:10025"

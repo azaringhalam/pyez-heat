@@ -1,0 +1,1 @@
+heat --os-tenant-name vsrx-project stack-create vsrx-fip-pool -f fip_pool.yaml -P "project_name=vsrx-project;public_network=vsrx-network-public;api_server=10.10.11.37;pool_name=vsrx-fip-pool"

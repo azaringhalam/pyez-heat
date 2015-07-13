@@ -1,0 +1,1 @@
+heat --os-tenant-name vsrx-project stack-create vsrx-ipam -f ipam.yaml  -P "ipam_name=vsrx-ipam-default"

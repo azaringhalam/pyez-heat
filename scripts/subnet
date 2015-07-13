@@ -1,0 +1,1 @@
+heat --os-tenant-name vsrx-project stack-create vsrx-subnet -f subnet.yaml -P "name=vsrx-subnet;network=default-domain:vsrx-project:vsrx-network;ip_prefix=192.168.6.0/24;default_gateway=192.168.6.1;ipam=default-domain:vsrx-project:vsrx-ipam-default;dhcp=True;dns_nameservers=8.8.8.8;net_pool_start=192.168.6.5;net_pool_end=192.168.6.12"

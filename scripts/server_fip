@@ -1,0 +1,1 @@
+heat --os-tenant-name vsrx-project stack-create vsrx-host-fip -f  server_fip.yaml -P "port=185fd500-4738-4a17-ae20-2bed72e0d97f;public_network=vsrx-network-public"

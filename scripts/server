@@ -1,0 +1,1 @@
+heat --os-tenant-name vsrx-project stack-create vsrx-host -f  server.yaml -P "image=vsrx_12_1x47D20_7;flavor=m1.medium;private_network=vsrx-network"

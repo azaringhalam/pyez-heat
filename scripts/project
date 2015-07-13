@@ -1,0 +1,1 @@
+heat stack-create vsrx-project -f openlab_project.yaml -P "auth_url=http://10.10.11.37:35357/v2.0;tenant=vsrx-project;description=vSRX Automation for AT&T;enabled=1"

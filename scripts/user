@@ -1,0 +1,1 @@
+heat stack-create vsrx-user -f openlab_user.yaml -P "auth_url=http://10.10.11.37:35357/v2.0;tenant=vsrx-project;user_name=admin;user_role=admin"
