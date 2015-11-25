@@ -4,11 +4,11 @@ description: >
   HOT template for PyEZ GetFacts
 
 parameters:
-  target_name:
+  host:
     type: string
     description: IP address/name of JUNOS target
 
-  user_name:
+  user:
     type: string
     description: User name
 
@@ -20,8 +20,8 @@ resources:
   junos_facts:
     type: OS::PyEZ::GetFacts
     properties:
-      target: { get_param: target_name }
-      user: { get_param: user_name }
+      target: { get_param: host }
+      user: { get_param: user }
       password: { get_param: password }
 
 outputs:

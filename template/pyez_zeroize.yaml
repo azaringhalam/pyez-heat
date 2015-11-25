@@ -11,12 +11,10 @@ parameters:
   user:
     type: string
     description: user name
-    default: root
 
   password:
     type: string
     description: password
-    default: op3nl@b
 
   console:
     type: number
@@ -26,10 +24,12 @@ parameters:
   zeroize:
     type: string
     description: for saftety must be set to zeroize
+    default: zeroize
 
   logfile:
     type: string
     description: local path to log progrerss status
+    default: /root/pyez-heat/logs/pyez.log
 
   port:
     type: number

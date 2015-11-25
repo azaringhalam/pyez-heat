@@ -23,22 +23,27 @@ parameters:
   overwrite:
     type: number
     description: Overwrite or merge
+    default: 0
 
   logfile:
     type: string
     description: logfile path
+    default: /root/pyez-heat/logs/pyez.log
 
   diffs_file:
     type: string
     description: diffs_file path
+    default: /root/pyez-heat/logs/pyez_diff_file
 
   savedir:
     type: string
     description: directory to save device facts
+    default: /root/pyez-heat/logs/
 
   timeout:
     type: number
     description: NETCONF RPC timeout
+    default: 0
 
   comment:
     type: string
@@ -47,10 +52,12 @@ parameters:
   port:
     type: number
     description: TCP port on device
+    default: 830
 
   check_mode:
     type: number
     description: Check mode for commit
+    default: 0
 
 resources:
   junos_config:

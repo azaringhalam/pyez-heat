@@ -137,6 +137,12 @@ class InstallConfig(resource.Resource):
         results['file'] = file_path
         results['changed'] = False
     
+        logfile = self.properties[self.LOGFILE]
+        if logfile is not None:
+            logging.basicConfig(filename=logfile, level=logging.INFO,
+                                format='%(asctime)s:%(name)s:%(message)s')
+            logging.getLogger().name = 'CONFIG:' + self.properties[self.HOST]
+
         logging.info("pushing file: {0}".format(file_path))
         try:
             logging.info("taking lock")
