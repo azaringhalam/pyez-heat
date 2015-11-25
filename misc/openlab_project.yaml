@@ -1,0 +1,56 @@
+heat_template_version: 2013-05-23
+
+description: >
+  HOT template for OpenLab Keystone tenant 
+
+parameters:
+  user:
+    type: string
+    description: user name
+    default: admin
+
+  password:
+    type: string
+    description: password
+    default: contrail123
+
+  keystone_name:
+    type: string
+    description: Keystone name
+    default: admin
+
+  auth_url:
+    type: string
+    description: authorization url
+
+  tenant:
+    type: string
+    description: tenant name
+
+  domain:
+    type: string
+    description: domain
+    default: default
+
+  description:
+    type: string
+    description: project description
+
+  enabled:
+    type: number
+    description: enable flag
+    default: 1
+
+resources:
+  openlab_project:
+    type: OS::OpenLab::Project
+    properties:
+      user: { get_param: user }
+      password: { get_param: password }
+      keystone_name: { get_param: keystone_name }
+      auth_url: { get_param: auth_url }
+      tenant_name: { get_param: tenant }
+      domain: { get_param: domain }
+      description: { get_param: description }
+      enabled: { get_param: enabled }
+
