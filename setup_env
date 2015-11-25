@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+	echo "Usage: setup_env tenant-name"
+	echo "Example: setup_env admin"
+        exit 0
+fi
+
+export OS_USERNAME=admin
+export OS_PASSWORD=contrail123
+export OS_TENANT_NAME=$1
+export OS_AUTH_URL=http://controller:5000/v2.0/
+export OS_NO_CACHE=1
+
+export ROOT_DIR=$PWD
+export TMPLT_DIR=$PWD/template
+export PATH=$PATH:$PWD/bin
