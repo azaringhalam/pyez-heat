@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+        echo "Usage: slist  tenant-name"
+        echo "Example: slist  admin"
+        exit 1
+fi
+
+heat --os-tenant-name $1 stack-list

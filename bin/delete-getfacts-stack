@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+        echo "Usage: delete-getfacts-stack stack_name"
+        echo "Example: delete-getfacts-stack vmx-getfacts"
+        exit 1
+fi
+
+args=("$@")
+STACK_NAME=${args[0]}
+
+heat stack-delete $STACK_NAME

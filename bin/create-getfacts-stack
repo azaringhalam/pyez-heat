@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [[ $# -ne 4 ]]; then
+        echo "Usage: create-getfacts-stack stack_name host user password"
+        echo "Example: create-getfacts-stack vmx-getfacts vmx_ip root juniper123"
+        exit 1
+fi
+
+args=("$@")
+STACK_NAME=${args[0]}
+HOST=${args[1]}
+USER=${args[2]}
+PASSWORD=${args[3]}
+
+heat stack-create $STACK_NAME -f $TMPLT_DIR/pyez_getfacts.yaml -P "host=$HOST;user=$USER;password=juniper123"

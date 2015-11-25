@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ $# -ne 2 ]]; then
+        echo "Usage: sshow  tenant-name stack-name"
+        echo "Example: sshow  admin vmx-install"
+        exit 1
+fi
+
+echo $1
+echo $2
+
+heat --os-tenant-name $1 stack-show $2
+
