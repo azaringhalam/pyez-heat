@@ -2,7 +2,7 @@
 
 if [[ $# -ne 4 ]]; then
         echo "Usage: create-getfacts-stack stack_name host user password"
-        echo "Example: create-getfacts-stack vmx-getfacts vmx_ip root juniper123"
+        echo "Example: create-getfacts-stack vmx-getfacts junos_device_ip root juniper123"
         exit 1
 fi
 
