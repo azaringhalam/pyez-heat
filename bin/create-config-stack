@@ -2,7 +2,7 @@
 
 if [[ $# -ne 7 ]]; then
         echo "Usage: create-config-stack stack_name host user password config_file comment overwrite"
-        echo "Example: create-config-stack vmx-install junos_device_ip root juniper123 /root/pyez-heat/config_examples/vmx_init_test.conf \"A new config\" 1"
+        echo "Example: create-config-stack vmx-install junos_device_ip root juniper123 $HOME/pyez-heat/config_examples/vmx_init_test.conf \"A new config\" 1"
         exit 1
 fi
 
@@ -15,4 +15,4 @@ CONFIG_FILE=${args[4]}
 COMMENT=${args[5]}
 OVERWRITE=${args[6]}
 
-heat  -d stack-create $STACK_NAME -f $TMPLT_DIR/pyez_installconfig.yaml -P "host=$HOST;user=$USER;password=$PASSWORD;file=$CONFIG_FILE;comment=$COMMENT;overwrite=$OVERWRITE"
+heat stack-create $STACK_NAME -f $TMPLT_DIR/pyez_installconfig.yaml -P "host=$HOST;user=$USER;password=$PASSWORD;file=$CONFIG_FILE;comment=$COMMENT;overwrite=$OVERWRITE"
